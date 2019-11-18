@@ -1,0 +1,7 @@
+numpy
+opencv-python
+mypy
+scikit-learn
+tensorflow-gpu
+keras
+pyyaml

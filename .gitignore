@@ -3,5 +3,4 @@ __pycache__/
 venv/
 dataset/
 *.zip
-.ipynb_checkpoints/
-.vscode/
+.*/
