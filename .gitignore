@@ -1,6 +1,9 @@
 *.pyc
+*.png
 __pycache__/
 venv/
 dataset/
 *.zip
 .*/
+logs/
+weights/
