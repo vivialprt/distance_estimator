@@ -1,0 +1,8 @@
+WEIGHTS: weights/20191129-13555663.h5
+MODE: image
+DATA: dataset/augmented/processed
+LABELS: dataset/augmented/processed/labels.json
+TEST_SIZE: 30
+GRAYSCALE: True
+SHOW_GT: True
+SHOW_LATENCY: True
