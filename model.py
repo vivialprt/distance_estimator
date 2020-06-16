@@ -1,6 +1,6 @@
-"""This file contains tools for working with network model"""
-
+"""This file contains tools for working with network model."""
 from typing import List
+
 from keras.models import Model
 from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import Conv2D
@@ -13,21 +13,20 @@ from keras.layers import Input
 
 
 def create_model(
-        width: int,
-        height: int,
-        depth: int = 1,
-        filters: List[int] = [16, 32, 64]
-        ) -> Model:
-    """Create cnn model architecture.
+    width: int,
+    height: int,
+    depth: int = 1,
+    filters: List[int] = None
+) -> Model:
     """
-
+    Create cnn model architecture.
+    """
     input_shape = (height, width, depth)
     chan_dim = -1
-    inputs = Input(shape=input_shape)
+    x = inputs = Input(shape=input_shape)
+    filters = [16, 32, 64] if filters is None else filters
     for index, size in enumerate(filters):
-        if index == 0:
-            x = inputs
-        # CONV -> RELU -> BN -> POOL
+        # CONV -> BN -> RELU -> POOL
         x = Conv2D(size, (3, 3),
                    padding='same',
                    kernel_initializer='he_normal')(x)
@@ -35,7 +34,7 @@ def create_model(
         x = Activation('relu')(x)
         x = MaxPooling2D(pool_size=(2, 2))(x)
     x = Flatten()(x)
-    # FC -> RELU -> BN -> DROPOUT
+    # FC -> BN -> RELU -> DROPOUT
     x = Dense(512, kernel_initializer='he_normal')(x)
     x = BatchNormalization(axis=chan_dim)(x)
     x = Activation('relu')(x)
