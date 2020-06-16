@@ -1,10 +1,9 @@
-"""Script for demonstrating model performance and accuracy.
-"""
-
-import yaml
+"""Script for demonstrating model performance and accuracy."""
 import json
 import os
 import time
+
+import yaml
 import numpy as np
 from easydict import EasyDict
 import cv2
@@ -34,7 +33,6 @@ if __name__ == '__main__':
 
             image = cv2.resize(image, (width, height))
             if CFG.GRAYSCALE:
-                # background = background[:, :, 0][:, :, np.newaxis]
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
                 image = image[:, :, np.newaxis]
 
